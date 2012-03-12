@@ -1,5 +1,10 @@
 Manager01::Application.routes.draw do
-  devise_for :users
+  get "users/show"
+
+  # devise_for :users
+  devise_for :users do
+	get 'users', :to => 'users#show', :as => :user_root # Rails 3
+  end
   
   resources :home, :only => :index
   

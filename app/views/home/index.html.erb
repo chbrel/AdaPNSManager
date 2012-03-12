@@ -1,15 +1,44 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<h1>Hello!</h1>
-
-<% unless user_signed_in? -%>
-  <p><%= link_to 'Sign in as User', new_user_session_path %></p>
-<% end -%>
-
-<% if user_signed_in? -%>
-  <p><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
-<% end -%>
-
-<p>Hello World!</p>
 <%= @test %>
+<div class="row">
+	<div class="span6 offset3">
+		<div class="hero-unit">
+			<h2>Annuaire des Anciens</h2>
+			<p>Bienvenue sur le site de l'Annuaire des Anciens de Polytech Nice Sophia. Chaque ancien de l'école y dispose d'un accès restreint. Pour obtenir un accès complet, il est nécessaire d'être membre de l'association.</p>
+
+			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+				<%= field_set_tag("Connexion") do %>
+					<div class="control-group">
+						<%= f.label :login, "Identifiant", :class => "control-label" %>
+						<div class="controls">
+							<%= f.text_field :login, :class => "input-large", :id => "login" %>
+						</div>
+					</div>
+	
+					<div class="control-group">
+						<%= f.label :password, "Mot de passe", :class => "control-label" %>
+						<div class="controls">
+							<%= f.password_field :password, :class => "input-large", :id => "password" %>
+						</div>
+					</div>
+	
+					<% if devise_mapping.rememberable? -%>
+					<div class="control-group">
+						<div class="controls">
+							<label class="checkbox">
+	    						<%= f.check_box :remember_me %> Se souvenir de moi
+							</label>
+						</div>
+					</div>
+					<% end -%>
+	
+					<div class="control-group">
+						<div class="controls">
+							<%= f.submit "Connexion", :class => "btn btn-primary btn-large" %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+         
+		</div><!--/row-->
+	</div><!--/span6-->
+</div><!--/row-->
